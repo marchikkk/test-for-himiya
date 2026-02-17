@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+	
+	<title>Товар</title>
+</head>
+<body>
+
+	<header class="header" id="catheader">
+		
+		<div class="header-top  items-center justify-center no-wrap">
+			<div class="header-top-content page-conteiner  items-center no-wrap flex">
+				<nav class="header-top-right flex items-center no-wrap">
+				  <a href="#">Акції</a>
+				  <a href="shops.html">Магазини</a>
+				  <a href="#">Допомога</a>
+				</nav>
+			</div>	
+		</div>
+	</header>
+
+		<div class="header-bot flex no-wrap justify-center items-center">
+			<div class="header-bot-content page-conteiner flex items-center">
+				<div class="logo">
+					<a href="index.html"><img src="img/logo.svg" alt="Логотип himiya"> </a>
+				</div>
+
+				<div class="catalog-wrapper flex" id="catalog-wrapper" onclick="catalogToggle()">
+					<button class="catalog-btn justify-center flex items-center ">
+						<img src="img/threebars.svg" alt="">
+						<!-- <span class="menu-icon">☰</span> -->
+						<span>Каталог</span>
+					</button>
+	
+				</div>
+				
+				<div class="search-block flex justify-center items-center no-wrap ">
+					<div class="search flex justify-center items-center">
+						<input type="text" id="searchInput" placeholder="Пошук товарів">
+						<button class="mic-btn" id="micBtn">
+							<img src="img/micro.svg" alt="Голосовий пошук">
+						</button>
+					</div>	
+					<button class="search-btn flex items-center justify-center no-wrap ">
+						<span>Знайти &nbsp; 🔍</span>
+					</button>
+				</div>
+				
+				<div class="panel flex items-center">
+					<div class="enter">
+						<a href="#">
+							<img src="img/enter.svg" alt="">	
+							<span>Увійти</span></a> 
+						</div>
+						<div class="selected column">
+							<a href="#">
+								<img src="img/selected.svg" alt="">	
+								<span>Обране</span></a>
+							</div>
+						</div>
+						<div class="tray flex items-center no-wrap ">
+							<a href="#" class="cart flex items-center justify-center">
+								<img src="img/tray.svg" alt="Кошик">
+								<span>Кошик</span>
+                                <span class="cart-count" id="cart-count">0</span>
+                            </a>
+							</div>
+						</div>
+					</div>
+
+				<div class="m-catalog-menu ">
+					<div class="catalog-menu-full page-conteiner fullscreen" id="catalog-menu-full">
+						<div class="catalog-menu">
+							<ul>
+								<li><a href="#">Телевізори та медіа</a></li>
+								<li><a href="#">Смартфони та гаджети</a></li>
+								<li><a href="#">Ноутбуки та ПК</a></li>
+								<li><a href="#">Побутова техніка</a></li>
+								<li><a href="#">Краса та здоров’я</a></li>
+								<li><a href="#">Дитячі товари</a></li>
+								<li><a href="#">Товари для дому</a></li>
+							</ul>
+						</div>
+						<div class="submenus-top">
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">Apple</a></li>
+									<li><a href="#">Samsung</a></li>
+									<li><a href="#">Xiaomi</a></li>
+								</ul>
+							</div>
+
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">MacBook</a></li>
+									<li><a href="#">Dell</a></li>
+									<li><a href="#">Lenovo</a></li>
+								</ul>
+							</div>
+
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">Мікрохвильовки</a></li>
+									<li><a href="#">Блендери</a></li>
+									<li><a href="#">Кавоварки</a></li>
+								</ul>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+
+				
+    <section class="page-conteiner">
+        <h1 id="product-name"></h1>
+
+        <div class="product-page">
+            <img id="product-image" src="" alt="">
+
+            <p id="product-article"></p>
+            <p id="product-brand"></p>
+            <p id="product-price"></p>
+
+            <button id="add-to-cart">Додати в кошик</button>
+        </div>
+
+
+		<div id="overlay"></div>	
+	</section>
+		
+
+
+
+	<footer>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<script src="js/common.js"></script>
+    <!-- <script src="js/category.js"></script> -->
+    <script src="js/products.js"></script> 
+	<script src="js/catalog.js"></script> 
+    <script src="js/product.js"></script> 
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/cart.css">
+	<link rel="stylesheet" href="css/search.css">
+	
+	<title>himiya</title>
+</head>
+<body>
+
+	<header class="header" id="catheader">
+		
+		<div class="header-top  items-center justify-center no-wrap">
+			<div class="header-top-content page-conteiner justify-center items-center no-wrap flex">
+				<nav class="header-top-right flex items-center no-wrap">
+				  <a href="#">Акції</a>
+				  <a href="shops.html">Магазини</a>
+				  <a href="#">Допомога</a>
+				</nav>
+			</div>	
+		</div>
+	</header>
+
+		<div class="header-bot flex no-wrap justify-center items-center">
+			<div class="header-bot-content page-conteiner flex items-center">
+				<div class="logo">
+					<a href="index.html"><img src="img/logo.svg" alt="Логотип himiya"> </a>
+				</div>
+
+				<div class="catalog-wrapper flex" id="catalog-wrapper" onclick="catalogToggle()">
+					<button class="catalog-btn justify-center flex items-center ">
+						<img src="img/threebars.svg" alt="">
+						<!-- <span class="menu-icon">☰</span> -->
+						<span>Каталог</span>
+					</button>
+				</div>
+				
+				<div class="search-block flex justify-center items-center no-wrap">
+					<div class="search flex justify-center items-center">
+						<input type="text" id="searchInput" placeholder="Пошук товарів">
+						<button class="mic-btn" id="micBtn">
+							<img src="img/micro.svg" alt="Голосовий пошук">
+						</button>
+					</div>	
+					<button class="search-btn flex items-center justify-center no-wrap ">
+						<span>Знайти &nbsp; 🔍</span>
+					</button>
+					<div class="search-suggestions" id="search-suggestions"></div>
+				</div>
+				
+				<div class="panel flex items-center">
+					<div class="enter">
+						<a href="#">
+							<img src="img/enter.svg" alt="">	
+							<span>Увійти</span>
+						</a> 
+					</div>
+					<div class="selected column">
+						<a href="favorites.html">
+							<img src="img/selected.svg" alt="">	
+							<span>Обране</span>
+							<span id="wishlist-count">0</span>
+						</a>
+					</div>
+				</div>
+				<div class="tray flex items-center no-wrap ">
+					<a href="" class="cart flex items-center justify-center">
+						<img src="img/tray.svg" alt="Кошик">
+						<span>Кошик</span>
+						<span class="cart-count" id="cart-count">0</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+				<!-- OVERLAY -->
+		<div class="cart-overlay" id="cart-overlay"></div>
+
+		<!-- CART PANEL -->
+		<div class="cart-panel" id="cart-panel">
+		<div class="cart-header">
+			<h3>Кошик</h3>
+			<button id="close-cart">✕</button>
+		</div>
+
+		<div class="cart-body" id="cart-items">
+			<!-- товары будут тут -->
+		</div>
+
+		<div class="cart-footer">
+			<div class="cart-total">
+			Разом: <span id="cart-total-price">0 ₴</span>
+			</div>
+			<button class="checkout-btn" id="go-checkout">Оформити замовлення</button>
+		</div>
+		</div>
+
+
+<div class="mobile-catalog-trigger-container page-conteiner">
+    <button class="mobile-catalog-btn" onclick="triggerMobileMenu()">
+        <img src="img/threebars.svg" alt="">
+        <span>Каталог </span>
+    </button>
+</div>
+		
+
+				<div class="m-catalog-menu">
+					<div class="catalog-menu-full" id="catalog-menu-full">
+						<div class="catalog-menu">
+							<ul>
+								<li><a href="#">Телевізори та медіа</a></li>
+								<li><a href="#">Смартфони та гаджети</a></li>
+								<li><a href="#">Ноутбуки та ПК</a></li>
+								<li><a href="#">Побутова техніка</a></li>
+								<li><a href="#">Краса та здоров’я</a></li>
+								<li><a href="#">Дитячі товари</a></li>
+								<li><a href="#">Товари для дому</a></li>
+							</ul>
+						</div>
+						<div class="submenus-top">
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">Apple</a></li>
+									<li><a href="#">Samsung</a></li>
+									<li><a href="#">Xiaomi</a></li>
+								</ul>
+							</div>
+
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">MacBook</a></li>
+									<li><a href="#">Dell</a></li>
+									<li><a href="#">Lenovo</a></li>
+								</ul>
+							</div>
+
+							<div class="cat-menu-top">
+								<ul>
+									<li><a href="#">Мікрохвильовки</a></li>
+									<li><a href="#">Блендери</a></li>
+									<li><a href="#">Кавоварки</a></li>
+								</ul>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+	<div class="products-grid" id="productsGrid"></div>
+				
+	<section class="page-conteiner">
+		<div class="container-fluid page-conteiner padd">
+			<div id="carousels" class="row ">
+				<!-- Левая колонка: каталог -->
+				<div class="catal-hover ">
+				<div id="catPush" class="catal col-lg-3 col-md-4 col-sm-12 p-3">
+					<ul class="men">
+						<li class="has-menu"><a href="#">Смартфони та телефони</a></li>
+						<li class="has-menu"><a href="#">Ноутбуки, планшети</a></li>
+						<li class="has-menu"><a href="#">Техніка для кухні</a></li>
+						<!-- остальные li с подменю -->
+					</ul>
+				</div>
+				<div class="submenus">
+					<div class="cat-menu">
+						<ul>
+							<li><a href="#">Apple</a></li>
+							<li><a href="#">Samsung</a></li>
+							<li><a href="#">Xiaomi</a></li>
+						</ul>
+					</div>
+
+					<div class="cat-menu">
+						<ul>
+							<li><a href="#">MacBook</a></li>
+							<li><a href="#">Dell</a></li>
+							<li><a href="#">Lenovo</a></li>
+						</ul>
+					</div>
+
+					<div class="cat-menu">
+						<ul>
+							<li><a href="#">Мікрохвильовки</a></li>
+							<li><a href="#">Блендери</a></li>
+							<li><a href="#">Кавоварки</a></li>
+						</ul>
+					</div>
+
+				</div>
+				
+				<div id="overlay"></div>
+
+
+		
+
+
+				<!-- ВЕРХНЯЯ КАРУСЕЛЬ -->
+				<div class="col-lg-9 col-md-8 col-sm-12 padd">
+					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<a href="index.html"><img src="img/carousel/test.png" class="d-block w-100" alt="..."></a>
+							</div>
+							<div class="carousel-item">
+								<a href="index.html"><img src="img/carousel/test1.png" class="d-block w-100" alt="..."></a>
+							</div>
+							<div class="carousel-item">
+								<a href="index.html"><img src="img/carousel/test3.png" class="d-block w-100" alt="..."></a>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+
+ <!-- НИЖНЯЯ КАРУСЕЛЬ -->
+					<div id="bot-carousel" class="swiper mySwiper marg">
+						<div class="swiper-wrapper">
+
+							
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+								<!-- <div class="card-body text-center">
+								<h5 class="card-title">Название товара</h5> 
+           						<p class="card-text">Краткое описание товара или ключевые характеристики. Например, "Этот товар доступен со скидкой 20% только сегодня!"</p>
+            					<a href="#" class="btn btn-primary">Купить</a>
+								</div> -->
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+
+							<div class="swiper-slide">
+							<div class="card">
+								<a href="index.html"><img src="img/carousel/test2.jpg" class="card-img-top"></a>
+							</div>
+							</div>
+						</div>
+
+					<!-- Кнопки -->
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+
+
+    			</div> <!-- Конец правой колонки -->
+
+				</div>
+			</div>
+
+
+				
+		</div>
+	</section>
+
+	<section class="promo-section page-conteiner">
+		<div class="home-section-insc">
+			<h4>Товари в акції</h4>
+			<a href="category.html?category=promo" class="home-section-link"><span>Переглянути всі</span></a>	
+		</div>
+		<div id="promo-container" class="home-section-body"></div>
+		
+
+		<template id="product-card-template">
+			<div class="card">
+				<span class="badge badge-sale">Акція</span>
+				<div class="item">
+				<div class="article">
+					<a href="#" class="product-article">Артикул: </a>
+					<button class="wishlist-btn">
+								❤️
+					</button>
+				</div>
+
+				<div class="item-image">
+					<a class="product-link">
+					<img class="card-img product-image" src="" alt="">
+					</a>
+				</div>
+
+				<div class="card-body">
+					<h5 class="card-title product-brand"></h5>
+					<a class="card-text product-name"></a>
+
+					<div class="card-footer-section">
+						<div class="product-prices">
+							<span class="old-price"></span>
+							<span class="current-price"></span>
+						</div>
+						<a href="#" class="btn btn-primary card-btn" data-id="">
+							Додати <img src="img/trayy.png" alt="Кошик">
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
+		</template>
+
+
+
+
+
+
+		<!-- ПЕРВЫЕ КАРТОЧКИ -->
+
+
+		<!-- <div class="home-section-body">	
+			<div class="swiper-slide">
+				<div class="card">
+					<div class="item">
+						<div class="article">
+						<a href="#">Артикул: 5345</a>	
+						</div>
+						<div class="item-image">
+							 <div class="swiper itemSwiper dcard">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<img src="img/carousel/test2.jpg" class="card-img">
+									</div>
+									<div class="swiper-slide image-card">
+										<img src="img/carousel2/girl.jpeg" class="card-img">
+									</div>
+								</div>
+
+								
+								<div class="swiper-button-prev card-nav-btn"></div>
+								<div class="swiper-button-next card-nav-btn"></div>
+							</div>
+						</div>	
+						<div class="card-body">
+							<h5 class="card-title">NIVEA</h5> 
+							<a href="index.html" class="card-text"><span>Шампунь для волосся</span></a>
+							<span class="price">5 000 ₴</span>
+							<a href="#" class="btn btn-primary card-btn">
+								Додати <img src="img/trayy.png" alt="Кошик">
+							</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+
+			<div class="swiper-slide">
+				<div class="card">
+					<div class="item">
+						<div class="article">
+						<a href="#">Артикул: 5345</a>	
+						</div>
+						<div class="item-image">
+							 <div class="swiper itemSwiper dcard">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<img src="img/carousel/test2.jpg" class="card-img">
+									</div>
+									<div class="swiper-slide image-card">
+										<img src="img/carousel2/girl.jpeg" class="card-img">
+									</div>
+								</div>
+
+								
+								<div class="swiper-button-prev card-nav-btn"></div>
+								<div class="swiper-button-next card-nav-btn"></div>
+							</div>
+						</div>	
+						<div class="card-body">
+							<h5 class="card-title">NIVEA</h5> 
+							<a href="index.html" class="card-text"><span>Шампунь для волосся</span></a>
+							<span class="price">5 000 ₴</span>
+							<a href="#" class="btn btn-primary card-btn">
+								Додати <img src="img/trayy.png" alt="Кошик">
+							</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+
+			
+		</div>	 -->
+	</section>
+		
+
+	<section class="test-section page-conteiner">
+		<div class="home-section-insc">
+			<h4>Шампуні</h4>
+			<a href="category.html?category=shampoos" class="home-section-link"><span>Переглянути всі</span></a>	
+		</div>
+		<div class="home-section-body" id="shampoos-container"></div>
+
+		<!-- <template id="product-card-template">
+			<div class="card">
+				<span class="badge badge-sale">Акція</span>
+				<div class="item">
+				<div class="article">
+					<a href="#" class="product-article">Артикул: </a>
+					<button class="wishlist-btn">
+								❤️
+					</button>
+				</div>
+
+				<div class="item-image">
+					<a class="product-link">
+					<img class="card-img product-image" src="" alt="">
+					</a>
+				</div>
+
+				<div class="card-body">
+					<h5 class="card-title product-brand"></h5>
+					<a class="card-text product-name"></a>
+					<div class="product-prices">
+						<span class="old-price"></span>
+						<span class="current-price"></span>
+					</div>
+					<a href="#" class="btn btn-primary card-btn">
+						Додати <img src="img/trayy.png" alt="Кошик">
+					</a>
+				</div>
+				</div>
+			</div>
+		</template> -->
+
+	</section>
+
+	<section class="test-section page-conteiner">
+		<div class="home-section-insc">
+			<h4>Мило</h4>
+			<a href="category.html?category=soaps" class="home-section-link"><span>Переглянути всі</span></a>	
+		</div>
+		<div class="home-section-body" id="soaps-container"></div>
+
+		<!-- <template id="product-card-template">
+			<div class="card">
+				<div class="item">
+				<div class="up-card">
+					<div class="article">
+						<a href="#" class="product-article">Артикул: </a>
+						<button class="wishlist-btn" data-id="">
+							❤️
+						</button>
+					</div>
+				</div>
+
+				<div class="item-image">
+					<a class="product-link">
+					<img class="card-img product-image" src="" alt="">
+					</a>
+				</div>
+
+				<div class="card-body">
+					<h5 class="card-title product-brand"></h5>
+					<a class="card-text product-name"></a>
+					<span class="price product-price"></span>
+					<a href="#" class="btn btn-primary card-btn">
+						Додати <img src="img/trayy.png" alt="Кошик">
+					</a>
+				</div>
+				</div>
+			</div>
+		</template> -->
+
+	</section>
+	
+
+
+	
+	
+	<nav class="mobile-nav">
+	  <a href="index.html" class="nav-item">
+		<img src="img/home.svg" alt="">
+		<span>Головна</span>
+	  </a>
+	
+	  <div class="nav-item" onclick="catalogToggle()">
+		<img src="img/catalog-m.svg" alt="">
+		<span>Каталог</span>
+	  </div>
+	
+		<div class="nav-item">
+		  <a href="" class="cart">
+			<div class="icon-badge-wrapper">
+				<img src="img/tray.svg" alt="">
+				<span class="badge" id="cart-count-mobile">0</span>
+				
+			</div>
+			<span class="nav-label">Кошик</span>
+		  </a>
+		</div>
+	  
+	  <a href="favorites.html" class="nav-item">
+		<div class="icon-badge-wrapper">
+		  <img src="img/selected.svg" alt="">
+		  <span class="badge wishlist-count-mobile" id="wishlist-count-mobile">0</span>
+		</div>
+		<span>Обране</span>
+	  </a>
+	
+	  <a href="profile.html" class="nav-item">
+		<img src="img/enter.svg" alt="">
+		<span>Кабінет</span>
+	  </a>
+	</nav>
+
+
+
+	<footer>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+			<p>.</p>
+
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<script src="js/products.js"></script> 
+	<script src="js/search.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/catalog.js"></script> 
+	<script src="js/cart.js"></script>
+	<script src="js/checkout.js"></script>
+	<script src="js/wishlist.js"></script>
+	
+</body>
+</html>

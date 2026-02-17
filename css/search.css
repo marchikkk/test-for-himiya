@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.page-conteiner {
+  width: 100%;
+  max-width: 85rem;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  grid-gap: .4rem;
+  border-radius: 1rem;
+}
+
+/* .search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  z-index: 1000;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,.15);
+  padding: 16px;
+} */
+
+.suggest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.suggest-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.suggest-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.suggest-item:hover {
+  background: #f5f5f5;
+}
+
+.suggest-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  background: #f7f7f7;
+  font-weight: 600;
+}
+
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.chips button {
+  border: none;
+  background: #f2f2f2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chips button:hover {
+  background: #e0e0e0;
+}
+
+
+@media (min-width: 768px) {
+  .mobile-toolbar {
+    display: none ;
+  }
+}
+
+
+.filters-panel {
+  position: fixed;
+  top: 0;       /* Начинаем от самого верха */
+  left: 0;
+  width: 100%;  /* На всю ширину */
+  height: 100%; /* На всю высоту */
+  background: #ffffff; /* Белый фон, чтобы ничего не просвечивало */
+  z-index: 9999; /* Поверх всего */
+  
+  display: flex;
+  flex-direction: column;
+  
+  /* Анимация появления: пусть выезжает снизу или сбоку */
+  transform: translateY(100%); 
+  transition: transform 0.3s ease-out;
+}
+
+.filters-panel.active {
+  transform: translateY(0); /* Выезжает на экран */
+}
+
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.suggested-categories {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.no-results {
+    grid-column: 1 / -1; /* Растягивает блок на все колонки сетки */
+    width: 100%;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.suggested-categories a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border: 1px solid #e31e24;
+    color: #e31e24;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.suggested-categories a:hover {
+    background: #e31e24;
+    color: #fff;
+}
+
+.back-to-catalog {
+  display: inline-block;
+  margin-top: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+@media (max-width: 1022px) {
+  .search-suggestions {
+    height: 150rem;
+    z-index: 101;
+    margin: 0;
+    left: 0;
+  }
+
+  .suggest-grid {
+    grid-template-columns: 1fr; 
+  }
+  /* Настраиваем саму карточку внутри поиска под список */
+  .suggest-item {
+    display: flex; /* Фото слева, текст справа */
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0; /* Линия-разделитель */
+    border-radius: 0; /* Убираем скругления для списка */
+    width: 100%;
+  }
+
+  /* Уменьшаем фото, чтобы оно не было огромным в списке */
+  .suggest-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  /* Инфо блок */
+  .suggest-item > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Название товара */
+  .suggest-item div div {
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  /* Цена */
+  .suggest-item strong {
+    font-size: 15px;
+    color: #000;
+  }
+  
+}
+
+
+
+
+
